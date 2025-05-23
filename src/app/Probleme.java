@@ -58,19 +58,6 @@ public class Probleme {
     else return true;
     }
 
-    //58
-    public int lengthOfLastWord(String s) {
-        int length = 0;
-        int i = s.length() - 1;
-        while (i >= 0 && s.charAt(i) != ' ') {
-            length++;
-            i--;
-        }
-
-        return length;
-    }
-
-
 //    88 You are given two integer arrays nums1 and nums2, sorted in non-decreasing order,
 //    and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 //    Merge nums1 and nums2 into a single array sorted in non-decreasing order.
@@ -201,6 +188,129 @@ public class Probleme {
         return perechi;
 
     }
+
+
+
+    //todo: Length of last word
+
+    public String lastWord(String sir){
+            String[] word= sir.trim().split(" ");
+            return word[word.length-1];
+
+    }
+
+    public int lengthOfLastWord(String s) {
+        String cuv= lastWord(s);
+        return cuv.length();
+    }
+
+
+    //TODO:387. First Unique Character in a String
+
+    public int getIndexOfChar(char a,String s){
+
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)==a){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+        public int firstUniqChar(String s) {
+            for (int i = 0; i < s.length(); i++) {
+                char c = s.charAt(i);
+                if (s.indexOf(c) == s.lastIndexOf(c)) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+    //TODO: 389.Find the Difference
+
+    public int sumOfChars(String s){
+        int sum=0;
+        for(int i = 0; i<s.length();i++){
+            sum+=s.charAt(i);
+        }
+        return sum;
+    }
+
+
+    public char findTheDifference(String s, String t) {
+        int sumS=sumOfChars(s);
+        int sumT=sumOfChars(t);
+        return (char) (sumT-sumS);
+    }
+
+
+
+
+    //todo:392. Is Subsequence
+
+    public int findCharFromIndex(String t, char c, int start){
+        for(int i = start; i< t.length(); i++){
+            if(t.charAt(i)==c){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isSubsequence(String s, String t) {
+        int pozitie=0;
+        for(int i=0;i<s.length();i++) {
+            pozitie = findCharFromIndex(t, s.charAt(i), pozitie);
+            if (pozitie == -1) {
+                return false;
+            }
+            pozitie++;
+        }
+        return true;
+    }
+
+
+    //todo:409. Longest Palindrome
+
+    public int[] frecventaLitera(String s){
+        int [] freventa=new int[128];
+        for (int i=0;i<s.length();i++){
+            freventa[s.charAt(i)]++;
+        }
+        return freventa;
+    }
+
+
+    public int longestPalindrome(String s) {
+        int [] freq= frecventaLitera(s);
+        int length = 0;
+        boolean oddFound = false;
+
+        for(int i=0;i<freq.length;i++){
+            if(freq[i]%2==0){
+                length+=freq[i];
+            }
+            else{
+                length+=freq[i]-1;
+                oddFound=true;
+            }
+        }
+        if (oddFound){
+            length+=1;
+        }
+        return length;
+    }
+
+
+
+
+
+
+
+
+
 
 
 
