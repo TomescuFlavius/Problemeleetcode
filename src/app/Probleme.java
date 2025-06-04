@@ -1,6 +1,7 @@
 package app;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Probleme {
     //26
@@ -303,15 +304,65 @@ public class Probleme {
         return length;
     }
 
+    private static int getValue(char roman) {
+        switch (roman) {
+            case 'I': return 1;
+            case 'V': return 5;
+            case 'X': return 10;
+            case 'L': return 50;
+            case 'C': return 100;
+            case 'D': return 500;
+            case 'M': return 1000;
+            default: return 0;
+        }
+    }
+
+    public int romanToInt(String s) {
+
+        int total = 0;
+        int valoare=0;
+        for(int i = s.length()-1; i>=0; i--){
+            int current=getValue(s.charAt(i));
+            if(current<valoare){
+                total-=current;
+            }
+            else total+=current;
+            valoare=current;
+        }
+        return total;
+
+    }
 
 
+    public void reverseString(char[] s) {
+
+        int left=0;
+        int right=s.length-1;
+        while (left<right){
+            char temp=s[left];
+            s[left]=s[right];
+            s[right]=temp;
+            left++;
+            right--;
+        }
+    }
 
 
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int gasit = 0;
+        for (int i = 0; i < ransomNote.length(); i++) {
+            char c = ransomNote.charAt(i);
+            int index = magazine.indexOf(c);
 
+            if (index == -1) {
+                return false;
+            }
+            magazine = magazine.substring(0, index) + magazine.substring(index + 1);
+        }
+        return true;
+    }
 
-
-
-
+    
 
 
 }
