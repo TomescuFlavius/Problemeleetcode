@@ -1,5 +1,6 @@
 package app;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -362,7 +363,45 @@ public class Probleme {
         return true;
     }
 
-    
+
+
+    public List<Boolean>kidsWithCandies(int[]vector,int n){
+        int max=-1;
+        for(int i=0;i<vector.length;i++){
+            if(vector[i]>max){
+                max=vector[i];
+            }
+        }
+        List<Boolean>lista=new ArrayList<>();
+        for(int i=0;i<vector.length;i++){
+            if(vector[i]+n>=max){
+                lista.add(true);
+            }
+            else{
+                lista.add(false);
+            }
+        }
+        return lista;
+    }
+
+
+
+
+    public static int maximumWealth(int[][] accounts) {
+        int max=-1;
+        for(int i=0;i<accounts.length;i++){
+            int suma=0;
+            for (int j=0;j<accounts[i].length;j++){
+                suma+=accounts[i][j];
+                if(suma>max){
+                    max=suma;
+                }
+            }
+        }
+        return max;
+    }
+
+
 
 
 }
